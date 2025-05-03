@@ -64,24 +64,54 @@
         console.log("---------------------")
         console.log("PART 1...")
 
-
-
-
-
+        // Celsius temperature
+        let tempC = -270;
+        // Convert to Fahrenheit
+        let tempF = (9 / 5) * tempC + 32;
+        // Log both temperatures
+        console.log("Celsius: " + tempC);
+        console.log("Fahrenheit: " + tempF);
         console.log("---------------------")
         console.log("PART 2...")
 
-
-
-
-
-
+        // Function to convert Celsius to Fahrenheit
+        function calculateTemp(tempC) {
+            return (9 / 5) * tempC + 32;
+        }
+        // Invoke the function with -270 degrees Celsius
+        let tempF2 = calculateTemp(-270);
+        // Log both temperatures
+        console.log("Celsius: " + -270);
+        console.log("Fahrenheit: " + tempF2);
+        // Store the result in a variable
+        let result = tempF2;
         console.log("---------------------")
         console.log("PART 3...")
 
-
-
-
+        // Get the input and button elements
+        const inputTempC = document.getElementById("input-temp-c");
+        const button = document.getElementById("calculate");
+        const displayTempF = document.getElementById("display-temp-f");
+        // Add an event listener to the button
+        button.addEventListener("click", function() {
+            // Get the Celsius temperature from the input
+            const celsius = parseFloat(inputTempC.value);
+            // Convert to Fahrenheit using the function
+            const fahrenheit = calculateTemp(celsius);
+            // Display the Fahrenheit temperature in the span element
+            displayTempF.textContent = fahrenheit;
+        });
+        // Set the initial Fahrenheit temperature
+        displayTempF.textContent = calculateTemp(parseFloat(inputTempC.value));
+        // Add an event listener to the input field to update the Fahrenheit temperature on change
+        inputTempC.addEventListener("input", function() {
+            // Get the Celsius temperature from the input
+            const celsius = parseFloat(inputTempC.value);
+            // Convert to Fahrenheit using the function
+            const fahrenheit = calculateTemp(celsius);
+            // Display the Fahrenheit temperature in the span element
+            displayTempF.textContent = fahrenheit;
+        });
 
     </script>
 </body>
