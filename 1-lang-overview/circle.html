@@ -51,17 +51,32 @@
 
         console.log("---------------------")
         console.log("PART 1...")
+        // Part 1: Function to calculate the area of a circle
+        function calculateCircleArea(radius) {
+        return Math.PI * Math.pow(radius, 2);
+        }
 
+        // Invoke the function with a radius of 9
+        const radius = 9;
+        const area = calculateCircleArea(radius);
 
+        // Log the radius and area to the console
+        console.log(`Radius: ${radius}`);
+        console.log(`Area: ${area}`);
 
+    console.log("---------------------");
+    console.log("PART 2...");
+    // Part 2: Handle button click to calculate and display the area
+    document.getElementById("calculate").addEventListener("click", function () {
+        // Get the radius value from the input field
+        const inputRadius = parseFloat(document.getElementById("input-radius").value);
 
+        // Calculate the area using the function from Part 1
+        const calculatedArea = calculateCircleArea(inputRadius);
 
-        console.log("---------------------")
-        console.log("PART 2...")
-
-
-
-
+        // Display the calculated area in the span element
+        document.getElementById("display-area").textContent = calculatedArea.toFixed(2);
+    });
 
     </script>
 </body>
