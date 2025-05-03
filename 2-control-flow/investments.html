@@ -57,23 +57,86 @@
 
         console.log("---------------------")
         console.log("PART 1...")
-
-
-
-
-
+        let initialBalance = 150000
+        let targetBalance = 1000000
+        let rate = 0.08
+        let years = 0
+        let currentBalance = initialBalance
+        while (currentBalance < targetBalance) {
+            currentBalance += currentBalance * rate
+            years++
+        }
+        console.log("Original balance: " + formatUSD(initialBalance))
+        console.log("Years: " + years)
+        console.log("Ending balance: " + formatUSD(currentBalance)) 
 
         console.log("---------------------")
         console.log("PART 2...")
-
-
-
-
-
+        const normal = d3.randomNormal(0.08, 0.15)
+        initialBalance = 150000
+        targetBalance = 1000000
+        years = 0
+        currentBalance = initialBalance
+        let randomReturns = []
+        while (currentBalance < targetBalance) {
+            let randomReturn = normal()
+            currentBalance += currentBalance * randomReturn
+            randomReturns.push(randomReturn)
+            years++
+        }
+        console.log("Original balance: " + formatUSD(initialBalance))
+        console.log("Years: " + years)
+        console.log("Ending balance: " + formatUSD(currentBalance))
+        for (let i = 0; i < randomReturns.length; i++) {
+            console.log("Year " + (i + 1) + ": " + randomReturns[i].toFixed(4))
+        }
 
         console.log("---------------------")
         console.log("PART 3...")
-
+        const form = document.createElement("form")
+        form.innerHTML = `
+            <label for="initialBalance">Initial Balance:</label>
+            <input type="number" id="initialBalance" value="150000"><br>
+            <label for="targetBalance">Target Balance:</label>
+            <input type="number" id="targetBalance" value="1000000"><br>
+            <label for="mean">Mean Return:</label>
+            <input type="number" id="mean" value="0.08"><br>
+            <label for="stdDev">Standard Deviation:</label>
+            <input type="number" id="stdDev" value="0.15"><br>
+            <button type="button" id="simulateButton">Simulate</button>
+        `
+        document.body.appendChild(form)
+        const resultDiv = document.createElement("div")
+        resultDiv.id = "result"
+        document.body.appendChild(resultDiv)
+        const simulateButton = document.getElementById("simulateButton")
+        simulateButton.addEventListener("click", () => {
+            const initialBalance = parseFloat(document.getElementById("initialBalance").value)
+            const targetBalance = parseFloat(document.getElementById("targetBalance").value)
+            const mean = parseFloat(document.getElementById("mean").value)
+            const stdDev = parseFloat(document.getElementById("stdDev").value)
+            const normal = d3.randomNormal(mean, stdDev)
+            let years = 0
+            let currentBalance = initialBalance
+            let randomReturns = []
+            while (currentBalance < targetBalance) {
+                let randomReturn = normal()
+                currentBalance += currentBalance * randomReturn
+                randomReturns.push(randomReturn)
+                years++
+            }
+            resultDiv.innerHTML = `
+                <h3>Simulation Result</h3>
+                <p>Original balance: ${formatUSD(initialBalance)}</p>
+                <p>Years: ${years}</p>
+                <p>Ending balance: ${formatUSD(currentBalance)}</p>
+                <h4>Random Returns:</h4>
+                <ul>${randomReturns.map((r, i) => `<li>Year ${i + 1}: ${r.toFixed(4)}</li>`).join("")}</ul>
+            `
+        })
+        console.log("---------------------")
+        console.log("PART 3 complete")
+        console.log("---------------------")
 
 
 

@@ -7,8 +7,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open receipt.html",
-            "file": "/Users/sathwik/Documents/GitHub/JS-exer/1-lang-overview/receipt.html"
+            "name": " Run current file",
+            "file": "${file}"
         }
     ]
 }
