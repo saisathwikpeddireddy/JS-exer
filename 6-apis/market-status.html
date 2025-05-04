@@ -92,12 +92,52 @@
             console.log("---------------------")
             console.log("PART 1...")
 
+            // A. 
+            console.log("Number of markets:", data.markets.length);
 
+            // B. 
+            var equityMarkets = data.markets.filter(market => market.market_type === "Equity");
+
+            // C. 
+            console.log("Number of equity markets:", equityMarkets.length);
+
+            // D. 
+            equityMarkets.forEach(market => {
+                console.log(`Market Type: ${market.market_type}, Region: ${market.region}`);
+            });
+
+            // E. 
+            var market = equityMarkets.find(m => m.region === "United States");
+
+            // F. 
+            if (market) {
+                console.log("US Market Info:");
+                console.log("Market Type:", market.market_type);
+                console.log("Primary Exchanges:", market.primary_exchanges);
+                console.log("Local Open:", market.local_open);
+                console.log("Local Close:", market.local_close);
+                console.log("Current Status:", market.current_status.toUpperCase());
+            } else {
+                console.warn("US Equity market not found.");
+            }
 
 
 
             console.log("---------------------")
             console.log("PART 2...")
+            
+            if (market) {
+                
+                document.getElementById("display-region").innerText = market.region;
+                document.getElementById("display-type").innerText = market.market_type;
+                document.getElementById("display-exchanges").innerText = market.primary_exchanges;
+                document.getElementById("display-open").innerText = market.local_open;
+                document.getElementById("display-close").innerText = market.local_close;
+                document.getElementById("display-status").innerText = market.current_status.toUpperCase();
+            } else {
+                
+                document.getElementById("display-market-info").innerText = "US market data not available.";
+            }
 
 
 
