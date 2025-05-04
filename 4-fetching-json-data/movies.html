@@ -82,19 +82,67 @@
             .then(function(data){
                 console.log("DATA", data)
 
+                console.log("---------------------");
+console.log("PART 1...");
 
-                console.log("---------------------")
-                console.log("PART 1...")
+// B. Number of movies
+console.log("B. Number of Movies:", data.length);
 
+// C. Title and year
+console.log("C. Movie Titles and Years:");
+data.forEach(movie => {
+    console.log(`- ${movie.Title} (${movie.Year})`);
+});
 
+// D. Highest rated movie
+const highestRatedMovie = data.reduce((best, current) => {
+    return current.Rating > best.Rating ? current : best;
+}, data[0]);
 
+console.log("D. Highest Rated Movie:");
+console.log(`- Title: ${highestRatedMovie.Title}`);
+console.log(`- Rating: ${highestRatedMovie.Rating}`);
 
-
+console.log("---------------------");
+console.log("PART 2...");
 
                 console.log("---------------------")
                 console.log("PART 2...")
 
+                // A. Populate the dropdown menu
+                const selectMovie = document.getElementById("select-movie");
+                data.forEach(movie => {
+                    const option = document.createElement("option");
+                    option.value = movie.Id;
+                    option.textContent = movie.Title;
+                    selectMovie.appendChild(option);
+                });
+                
+                // B. Function to update movie info
+                function updateMovieInfo() {
+                    const selectedMovieId = selectMovie.value;
+                    const selectedMovie = data.find(movie => movie.Id == selectedMovieId);
+                    
+                    if (selectedMovie) {
+                        document.getElementById("display-title").textContent = selectedMovie.Title;
+                        document.getElementById("display-year").textContent = selectedMovie.Year;
+                        document.getElementById("display-rating").textContent = selectedMovie.Rating;
 
+                        const imageContainer = document.getElementById("image-container");
+                        imageContainer.innerHTML = ""; 
+                        const img = document.createElement("img");
+                        img.src = selectedMovie["Thumbnail Image URL"];
+                        img.alt = `${selectedMovie.Title} Poster`;
+                        imageContainer.appendChild(img);
+                    }
+                }
+                // C. Add event listener to the dropdown
+                selectMovie.addEventListener("change", updateMovieInfo);
+                
+                updateMovieInfo();
+               
+                console.log("PART 2 is done.")
+                console.log("---------------------")
 
 
 
