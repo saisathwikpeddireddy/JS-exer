@@ -70,14 +70,48 @@
 
         console.log("---------------------")
         console.log("PART 1...")
-
-
-
+        // Part 1
+        let isRaining = true;
+        console.log("isRaining: " + isRaining);
+       
+        let ownsUmbrella = false;
+        console.log("ownsUmbrella: " + ownsUmbrella);
+    
+        if (!isRaining) {
+            console.log("Skies are clear");
+        }
+  
+        if (isRaining) {
+            if (ownsUmbrella) {
+                console.log("Bring your umbrella");
+            } else {
+                console.log("Buy an umbrella");
+            }
+        }
+       
+        // Part 1 is complete
+ 
 
 
         console.log("---------------------")
         console.log("PART 2...")
-
+        // Part 2
+        function advise(isRaining, ownsUmbrella) {
+            if (!isRaining) {
+                return "Skies are clear";
+            } else {
+                if (ownsUmbrella) {
+                    return "Bring your umbrella";
+                } else {
+                    return "Buy an umbrella";
+                }
+            }
+        }
+        console.log(advise(true, true)); 
+        console.log(advise(true, false)); 
+        console.log(advise(false, true)); 
+        console.log(advise(false, false)); 
+        // Part 2 is complete
 
 
 
@@ -85,9 +119,20 @@
         console.log("---------------------")
         console.log("PART 3...")
 
-
-
-
+        function displayMessage(message) {
+            document.getElementById("display-message").innerText = message;
+        }
+        // Part 3
+        document.getElementById("advise").addEventListener("click", function() {
+            
+            let isRaining = document.getElementById("switch-raining").checked;
+            let ownsUmbrella = document.getElementById("switch-umbrella").checked;
+            
+            let message = advise(isRaining, ownsUmbrella);
+            
+            displayMessage(message);
+        });
+        // Part 3 is complete 
 
     </script>
 </body>
