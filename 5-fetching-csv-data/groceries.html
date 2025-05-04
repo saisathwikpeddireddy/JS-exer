@@ -71,7 +71,7 @@
     <script type="text/javascript">
 
         function formatUSD(price) {
-            return `$${price.toFixed(2)}`
+            return `$${parseFloat(price).toFixed(2)}`
         }
 
         var requestUrl = "https://raw.githubusercontent.com/prof-rossetti/intro-to-python/main/data/products.csv"
@@ -82,16 +82,60 @@
 
             console.log("---------------------")
             console.log("PART 1...")
+            
+            //A, B: 
+            console.log("Number of products:", products.length)
 
+            // C: 
+            products.forEach(product => {
+                console.log(`${product.name} - ${formatUSD(product.price)}`)
+            })
 
+            // D: 
+            var departments = []
+            products.forEach(product => {
+                if (!departments.includes(product.department)) {
+                    departments.push(product.department)
+                }
+            })
 
+            // E:
+            console.log("Number of unique departments:", departments.length)
 
+            // F:
+            console.log("Departments:")
+            departments.forEach(department => {
+                console.log(department.toUpperCase())
+            })
 
+            // G:
+            var beverages = products.filter(product => product.department === "beverages")
+
+            // H: 
+            console.log("Number of beverage products:", beverages.length)
+
+            // I: 
+            var totalBeveragePrice = d3.sum(beverages, d => parseFloat(d.price))
+            var averageBeveragePrice = totalBeveragePrice / beverages.length
+            console.log("Average price of beverages:", formatUSD(averageBeveragePrice))
+
+            console.log("Part 1 complete.")
+            
 
             console.log("---------------------")
             console.log("PART 2...")
 
-
+            // A:
+            products.sort((a, b) => a.name.localeCompare(b.name))
+            console.log("Sorted products by name.")
+            // B: 
+            var groceryList = d3.select("#display-groceries")
+            products.forEach(product => {
+                groceryList.append("li")
+                    .text(`${product.name} - ${formatUSD(product.price)}`)
+            })
+            console.log("Displayed sorted products in the list.")
+            console.log("Part 2 complete.")
 
 
 
