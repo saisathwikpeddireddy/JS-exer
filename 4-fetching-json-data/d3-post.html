@@ -34,8 +34,9 @@
         console.log("SUCCESS!")
         console.log("Response:", response)
         // work with the response here
-
-
+        const pre = document.createElement("pre");
+        pre.textContent = JSON.stringify(response, null, 2);
+        document.body.appendChild(pre);
 
       })
       .catch(error => {
