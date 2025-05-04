@@ -86,16 +86,52 @@
 
         console.log("---------------------")
         console.log("PART 1...")
-
+        // A.
+        console.log("Your driver is " + trip.driver.first_name)
+        // B.
+        console.log("License plate number: " + trip.vehicle.licensePlate)
+        // C.
+        console.log("Number of stops: " + trip.stops.length)
+        // D.
+        console.log("First stop: " + trip.stops[0].destination)
+        // E.
+        console.log("Last stop: " + trip.stops[trip.stops.length - 1].destination)
+        // F.
+        for (var i = 0; i < trip.stops.length; i++) {
+            console.log("Passenger: " + trip.stops[i].passenger)
+        }
+        // G.
+        var fares = trip.stops.map(function(stop) {
+            return stop.fare
+        })
+        console.log("Fares: " + fares)
+        // H.
+        var totalFare = d3.sum(fares)
+        console.log("Total fare: $" + totalFare.toFixed(2))
+        // Part 1 is done
+        console.log("PART 1 is done.")
 
 
 
 
         console.log("---------------------")
         console.log("PART 2...")
-
-
-
+        var displayDriverSpan = document.getElementById("display-driver")
+        var displayVehicleSpan = document.getElementById("display-vehicle")
+        var displayPassengersOl = document.getElementById("display-passengers")
+        // A.
+        displayDriverSpan.innerHTML = trip.driver.first_name
+        // B.
+        displayVehicleSpan.innerHTML = trip.vehicle.make + " " + trip.vehicle.model + " " + trip.vehicle.licensePlate
+        // C.
+        for (var i = 0; i < trip.stops.length; i++) {
+            var passengerLi = document.createElement("li")
+            passengerLi.innerHTML = trip.stops[i].passenger
+            displayPassengersOl.appendChild(passengerLi)
+        }
+        // Part 2 is done
+        console.log("PART 2 is done.")
+        console.log("---------------------")
 
 
     </script>
