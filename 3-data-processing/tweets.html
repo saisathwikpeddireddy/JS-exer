@@ -101,16 +101,75 @@
 
         console.log("---------------------")
         console.log("PART 1...")
-
-
-
-
+        // A.
+        console.log("First tweet screen name: " + tweets[0].user.screen_name)
+        // B.
+        for (var i = 0; i < tweets.length; i++) {
+            if (tweets[i].full_text.includes("@sandwoah")) {
+                console.log("Tweet screen name: " + tweets[i].user.screen_name)
+            }
+        }
+        // C.
+        var maxLikes = 0
+        var maxLikesIndex = -1
+        for (var i = 0; i < tweets.length; i++) {
+            if (tweets[i].full_text.includes("@sandwoah") && tweets[i].likes_count > maxLikes) {
+                maxLikes = tweets[i].likes_count
+                maxLikesIndex = i
+            }
+        }
+        console.log("Max likes tweet screen name: " + tweets[maxLikesIndex].user.screen_name)
+        // Part 1 is done
+        console.log("PART 1 is done.")
 
 
         console.log("---------------------")
         console.log("PART 2...")
-
-
+        var displayTweetsTable = document.getElementById("social-feed")
+        // A.
+        tweets.sort(function(a, b) {
+            return b.likes_count - a.likes_count
+        })
+        // B.
+        var headerRow = document.createElement("tr")
+        var headerId = document.createElement("th")
+        headerId.innerHTML = "Tweet Id"
+        var headerText = document.createElement("th")
+        headerText.innerHTML = "Tweet Text"
+        var headerUser = document.createElement("th")
+        headerUser.innerHTML = "User Screen Name"
+        var headerFollowers = document.createElement("th")
+        headerFollowers.innerHTML = "User Followers"
+        var headerLikes = document.createElement("th")
+        headerLikes.innerHTML = "Tweet Likes"
+        headerRow.appendChild(headerId)
+        headerRow.appendChild(headerText)
+        headerRow.appendChild(headerUser)
+        headerRow.appendChild(headerFollowers)
+        headerRow.appendChild(headerLikes)
+        displayTweetsTable.appendChild(headerRow)
+        for (var i = 0; i < tweets.length; i++) {
+            var tweetRow = document.createElement("tr")
+            var tweetId = document.createElement("td")
+            tweetId.innerHTML = tweets[i].id
+            var tweetText = document.createElement("td")
+            tweetText.innerHTML = tweets[i].full_text
+            var tweetUser = document.createElement("td")
+            tweetUser.innerHTML = tweets[i].user.screen_name
+            var tweetFollowers = document.createElement("td")
+            tweetFollowers.innerHTML = tweets[i].user.followers
+            var tweetLikes = document.createElement("td")
+            tweetLikes.innerHTML = tweets[i].likes_count
+            tweetRow.appendChild(tweetId)
+            tweetRow.appendChild(tweetText)
+            tweetRow.appendChild(tweetUser)
+            tweetRow.appendChild(tweetFollowers)
+            tweetRow.appendChild(tweetLikes)
+            displayTweetsTable.appendChild(tweetRow)
+        }
+        // Part 2 is done
+        console.log("PART 2 is done.")
+        console.log("---------------------")
 
 
     </script>
