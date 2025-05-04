@@ -64,7 +64,7 @@
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script type="text/javascript">
 
-        var requestUrl = "TODO"
+    var requestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
 
         d3.json(requestUrl).then(function(data){
             console.log("DATA:", data)
@@ -72,13 +72,42 @@
 
             console.log("---------------------")
             console.log("PART 1...")
+            // A. 
+            var requestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
 
+            // B, C. 
+            var drinks = data.drinks;
+            console.log("Number of non-alcoholic drinks:", drinks.length);
 
-
-
+            // D.
+            drinks.forEach(function(drink) {
+                console.log(`Drink Name: ${drink.strDrink}, ID: ${drink.idDrink}`);
+            });
 
             console.log("---------------------")
             console.log("PART 2...")
+            // A. 
+            document.getElementById("display-drinks-count").innerText = drinks.length;
+
+            // B. 
+            var displayDiv = document.getElementById("display-drinks");
+            displayDiv.innerHTML = "";
+
+            drinks.forEach(function(drink) {
+                var drinkDiv = document.createElement("div");
+
+                var namePara = document.createElement("p");
+                namePara.innerText = drink.strDrink;
+                drinkDiv.appendChild(namePara);
+
+                var img = document.createElement("img");
+                img.src = drink.strDrinkThumb;
+                img.alt = drink.strDrink;
+                img.style.height = "100px";
+                drinkDiv.appendChild(img);
+
+                displayDiv.appendChild(drinkDiv);
+            });
 
 
 
