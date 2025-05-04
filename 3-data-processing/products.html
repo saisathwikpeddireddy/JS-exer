@@ -62,14 +62,58 @@
         console.log("---------------------")
         console.log("PART 1...")
 
-
-
-
-
-
+        // A. 
+        console.log("Total number of products: " + products.length)
+        // B. 
+        for (var i = 0; i < products.length; i++) {
+            console.log("Product Name: " + products[i].name)
+            console.log("Product Price: " + products[i].price)
+        }
+        // C. 
+        var matchingProducts = products.filter(function(product) {
+            return product.price < 50
+        })
+        // D. 
+        console.log("Total number of matching products: " + matchingProducts.length)
+        //Part 1 is done
+        console.log("PART 1 is done.")
         console.log("---------------------")
         console.log("PART 2...")
-
+        
+        var displayProductsDiv = document.getElementById("display-products")
+        
+        for (var i = 0; i < products.length; i++) {
+            
+            var productDiv = document.createElement("div")
+            
+            var nameP = document.createElement("p")
+            nameP.innerHTML = "Product Name: " + products[i].name
+            
+            var descriptionP = document.createElement("p")
+            descriptionP.innerHTML = "Product Description: " + products[i].description
+            
+            var priceP = document.createElement("p")
+            priceP.innerHTML = "Product Price: $" + products[i].price
+            
+            var imageImg = document.createElement("img")
+            imageImg.src = products[i].imageURL
+            imageImg.alt = products[i].name
+            imageImg.width = 360
+            imageImg.height = 200
+           
+            var hrTag = document.createElement("hr")
+            
+            productDiv.appendChild(nameP)
+            productDiv.appendChild(descriptionP)
+            productDiv.appendChild(priceP)
+            productDiv.appendChild(imageImg)
+            productDiv.appendChild(hrTag)
+            
+            displayProductsDiv.appendChild(productDiv)
+        }
+        // Part 2 is done
+        console.log("---------------------")
+        console.log("PART 2 is done.")
 
 
 
