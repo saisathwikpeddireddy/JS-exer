@@ -63,20 +63,64 @@
 
         console.log("---------------------")
         console.log("PART 1...")
-
-
-
-
-
+        // A.
+        console.log(gradebook.downloadDate)
+        // B.
+        console.log(gradebook.students.length)
+        // C.
+        gradebook.students.forEach(function(student) {
+            console.log(student.name)
+            console.log(student.finalGrade)
+        })
+        // D.
+        var grades = gradebook.students.map(function(student) {
+            return student.finalGrade
+        })
+        console.log(grades)
+        // E.
+        var average = d3.mean(grades)
+        console.log(average)
+        // F.
+        var median = d3.median(grades)
+        console.log(median)
 
         console.log("---------------------")
         console.log("PART 2...")
 
+        var table = document.getElementById("display-gradebook");
 
+   
+        var headerRow = document.createElement("tr");
+        var headers = ["Student ID", "Student Name", "Final Grade"];
+    headers.forEach(function(headerText) {
+        var th = document.createElement("th");
+        th.textContent = headerText;
+        headerRow.appendChild(th);
+    });
+        table.appendChild(headerRow);
 
+   
+    gradebook.students.forEach(function(student) {
+        var row = document.createElement("tr");
 
+        var cellId = document.createElement("td");
+        cellId.textContent = student.studentId;
+        row.appendChild(cellId);
 
+        var cellName = document.createElement("td");
+        cellName.textContent = student.name;
+        row.appendChild(cellName);
 
+        var cellGrade = document.createElement("td");
+        cellGrade.textContent = student.finalGrade;
+        row.appendChild(cellGrade);
+
+        table.appendChild(row);
+    });
+
+        console.log("---------------------")
+        console.log("PART 2...done")
+        console.log("---------------------")
     </script>
 
 </body>
