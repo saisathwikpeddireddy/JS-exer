@@ -89,13 +89,59 @@
 
                 console.log("---------------------")
                 console.log("PART 1...")
-
+                // A.
+                console.log("Date: " + data.properties.updated)
+                // B.
+                console.log("Number of periods: " + data.properties.periods.length)
+                // C.
+                var daytimePeriods = data.properties.periods.filter(function(period){
+                    return period.isDaytime
+                })
+                console.log("Number of daytime periods: " + daytimePeriods.length)
+                // D.
+                for (var i = 0; i < daytimePeriods.length; i++) {
+                    var period = daytimePeriods[i]
+                    console.log("Forecast for " + period.name + ": " + period.temperature + degreeSymbol + period.temperatureUnit)
+                    console.log("Forecast: " + period.shortForecast)
+                }
+                // E.
+                var matchingPeriods = daytimePeriods.filter(function(period){
+                    return period.temperature > 70
+                })
+                console.log("Number of matching periods: " + matchingPeriods.length)
+                // F.
+                for (var i = 0; i < matchingPeriods.length; i++) {
+                    var period = matchingPeriods[i]
+                    console.log("Matching forecast for " + period.name + ": " + period.temperature + degreeSymbol + period.temperatureUnit)
+                    console.log("Forecast: " + period.shortForecast)
+                }
+                // Part 1 is done
+                console.log("PART 1 is done.")
 
 
 
                 console.log("---------------------")
                 console.log("PART 2...")
-
+                // A. Display the date this data was generated
+                var displayDate = document.getElementById("display-date")
+                displayDate.innerHTML = data.properties.updated
+                // B. Display the seven day forecast
+                var displayForecastTable = document.getElementById("display-forecast")
+                var tableHeader = "<tr><th>Period</th><th>Temperature</th><th>Forecast</th><th>Icon</th></tr>"
+                displayForecastTable.innerHTML = tableHeader
+                for (var i = 0; i < daytimePeriods.length; i++) {
+                    var period = daytimePeriods[i]
+                    var tableRow = "<tr>"
+                    tableRow += "<td>" + period.name + "</td>"
+                    tableRow += "<td>" + period.temperature + degreeSymbol + period.temperatureUnit + "</td>"
+                    tableRow += "<td>" + period.shortForecast + "</td>"
+                    tableRow += "<td><img src='" + period.icon + "' alt='Weather Icon'></td>"
+                    tableRow += "</tr>"
+                    displayForecastTable.innerHTML += tableRow
+                }
+                // Part 2 is done
+                console.log("PART 2 is done.")
+                console.log("---------------------")
 
 
 
